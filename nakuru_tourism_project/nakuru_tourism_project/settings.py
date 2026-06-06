@@ -171,12 +171,26 @@ STATIC_ROOT = BASE_DIR / "staticfiles" # new
 STATICFILES_STORAGE ="whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 VENV_BASE = Path(os.environ.get('VIRTUAL_ENV', BASE_DIR / 'tour_env'))
-if os.name =='nt':
+#if os.name =='nt':
 
-    GDAL_PATH =r"C:\Users\DIGIFIT MEDIA\Documents\tour_env\Lib\site-packages\osgeo"
+    #GDAL_PATH =r"C:\Users\DIGIFIT MEDIA\Documents\tour_env\Lib\site-packages\osgeo"
 
-    os.environ['PATH'] = str(GDAL_PATH)+ os.path.pathsep + os.environ['PATH']
+    #os.environ['PATH'] = str(GDAL_PATH)+ os.path.pathsep + os.environ['PATH']
 
-    GDAL_LIBRARY_PATH = r"C:\Users\racha\Documents\tour_env\Lib\site-packages\osgeo\gdal.dll"
-    GEOS_LIBRARY_PATH = r"C:\Users\racha\Documents\tour_env\Lib\site-packages\osgeo\geos_c.dll"
+    #GDAL_LIBRARY_PATH = r"C:\Users\racha\Documents\tour_env\Lib\site-packages\osgeo\gdal.dll"
+    #GEOS_LIBRARY_PATH = r"C:\Users\racha\Documents\tour_env\Lib\site-packages\osgeo\geos_c.dll"
+
+import os
+import glob
+
+# --- FORCE GEODJANGO TO AUTO-DETECT CLOUD LIBRARIES ---
+if "linux" in os.sys.platform:
+    # Hunt for the specific versioned GDAL and GEOS files on the Linux server
+    gdal_libs = glob.glob('/usr/lib/x86_64-linux-gnu/libgdal.so.*')
+    geos_libs = glob.glob('/usr/lib/x86_64-linux-gnu/libgeos_c.so.*')
+    
+    if gdal_libs:
+        GDAL_LIBRARY_PATH = gdal_libs[0]
+    if geos_libs:
+        GEOS_LIBRARY_PATH = geos_libs[0]
     
