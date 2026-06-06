@@ -5,12 +5,15 @@ import pandas as pd
 import folium
 from streamlit_folium import st_folium
 import plotly.express as px
-from django.apps import apps
+
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'nakuru_tourism_project.settings')
 os.environ['SECRET_KEY'] = 'local-migration-bypassed-key-123'
-if not apps.ready:
+@st.cache_resource
+def initialize_django():
     django.setup()
-    
+    return True
+
+initialize_django()
 from tour_app.models import AttractionSite, Hotel, Pricing, VisitorStat, Category
 
 @st.cache_data
