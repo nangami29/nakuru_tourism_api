@@ -118,15 +118,16 @@ WSGI_APPLICATION = 'nakuru_tourism_project.wsgi.application'
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 
 DATABASES = {
+    'default': env.db('DATABASE_URL')
     
-    'default': {
-        'ENGINE': 'django.contrib.gis.db.backends.postgis',
-        'NAME': 'nakuru_tourism_db',
-        'USER': 'postgres',
-        'PASSWORD' : '925259@Naram',
-        'HOST': '127.0.0.1',
-        'PORT': '5432',
-    }
+    #'default': {
+       # 'ENGINE': 'django.contrib.gis.db.backends.postgis',
+        #'NAME': 'nakuru_tourism_db',
+        #'#USER': 'postgres',
+        #'PASSWORD' : '925259@Naram',
+        #'HOST': '127.0.0.1',
+        #'PORT': '5432',
+    #}
 }
 
 
