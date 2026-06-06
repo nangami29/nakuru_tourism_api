@@ -5,17 +5,26 @@ import pandas as pd
 import folium
 from streamlit_folium import st_folium
 import plotly.express as px
+from django.apps import apps
 
+ Environment Settings
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'nakuru_tourism_project.settings')
 os.environ['SECRET_KEY'] = 'local-migration-bypassed-key-123'
-@st.cache_resource
-def initialize_django():
-    django.setup()
-    return True
+os.environ["DJANGO_ALLOW_ASYNC_UNSAFE"] = "true"  # Prevents database thread lock in Streamlit
 
-initialize_django()
+ Bulletproof Django Initialization
+if not apps.ready:
+    try:
+        django.setup()
+    except RuntimeError as e:
+       
+        if "populate() isn't reentrant" in str(e):
+            pass
+        else:
+            raise
+
+ Import Models safely AFTER setup
 from tour_app.models import AttractionSite, Hotel, Pricing, VisitorStat, Category
-
 @st.cache_data
 def load_data():
     attractions_df = pd.DataFrame(list(AttractionSite.objects.all().values()))
