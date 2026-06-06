@@ -7,12 +7,11 @@ from streamlit_folium import st_folium
 import plotly.express as px
 from django.apps import apps
 
- Environment Settings
+ #Environment Settings
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'nakuru_tourism_project.settings')
 os.environ['SECRET_KEY'] = 'local-migration-bypassed-key-123'
-os.environ["DJANGO_ALLOW_ASYNC_UNSAFE"] = "true"  # Prevents database thread lock in Streamlit
+os.environ["DJANGO_ALLOW_ASYNC_UNSAFE"] = "true"  
 
- Bulletproof Django Initialization
 if not apps.ready:
     try:
         django.setup()
