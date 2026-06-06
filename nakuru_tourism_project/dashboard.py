@@ -22,7 +22,7 @@ if not apps.ready:
         else:
             raise
 
- Import Models safely AFTER setup
+ #Import Models safely AFTER setup
 from tour_app.models import AttractionSite, Hotel, Pricing, VisitorStat, Category
 @st.cache_data
 def load_data():
