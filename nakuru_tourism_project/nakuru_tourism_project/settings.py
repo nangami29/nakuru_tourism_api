@@ -123,7 +123,7 @@ DATABASES = {
         'ENGINE': 'django.contrib.gis.db.backends.postgis',
         'NAME': 'nakuru_tourism_db',
         'USER': 'postgres',
-        'PASSWORD' : '987654321Nara',
+        'PASSWORD' : '925259@Naram',
         'HOST': '127.0.0.1',
         'PORT': '5432',
     }
@@ -177,6 +177,6 @@ if os.name =='nt':
 
     os.environ['PATH'] = str(GDAL_PATH)+ os.path.pathsep + os.environ['PATH']
 
-    GDAL_LIBRARY_PATH = r"C:\Users\DIGIFIT MEDIA\Documents\tour_env\Lib\site-packages\osgeo\gdal.dll"
-    GEOS_LIBRARY_PATH = r"C:\Users\DIGIFIT MEDIA\Documents\tour_env\Lib\site-packages\osgeo\geos_c.dll"
+    GDAL_LIBRARY_PATH = r"C:\Users\racha\Documents\tour_env\Lib\site-packages\osgeo\gdal.dll"
+    GEOS_LIBRARY_PATH = r"C:\Users\racha\Documents\tour_env\Lib\site-packages\osgeo\geos_c.dll"
     
